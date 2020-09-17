@@ -1,1 +1,0 @@
-/home/akintilo/.zprezto/runcoms/zprofile
