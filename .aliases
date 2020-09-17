@@ -1,4 +1,0 @@
-alias windowsproxy="ssh -CNT2gL 8090:localhost:3128 raspi -p 22"
-alias terminalproxy="export http_proxy=http://localhost:8090 && export https_proxy=https://localhost:8090"
-
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
