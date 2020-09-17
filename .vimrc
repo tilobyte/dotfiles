@@ -21,5 +21,6 @@ endif
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
+Plug 'dracula/vim',{'as': 'dracula'}
 call plug#end()
 
