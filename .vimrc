@@ -3,6 +3,10 @@ set cursorline
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ignorecase
 set smartcase
+set hlsearch
+" Press Space to turn off highlighting and clear any message already
+" displayed.
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " attempt to fix starting in replace mode
 set t_u7=
