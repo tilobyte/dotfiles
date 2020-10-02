@@ -8,8 +8,10 @@ set hlsearch
 " displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-" attempt to fix starting in replace mode
-set t_u7=
+" make copy/paste work in wayland
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
 
 " automatically install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -22,6 +24,9 @@ endif
 call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
-Plug 'dracula/vim',{'as': 'dracula'}
+Plug 'morhetz/gruvbox'
 call plug#end()
 
+" theme
+colorscheme gruvbox
+set background=dark

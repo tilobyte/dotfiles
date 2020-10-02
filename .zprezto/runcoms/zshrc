@@ -17,3 +17,7 @@ source $HOME/.aliases
 
 # get colors to work properly in tmux
 # export TERM=xterm-256color
+
+# make applications use wayland
+# export MOZ_ENABLE_WAYLAND=true
+# export QT_QPA_PLATFORM=wayland
