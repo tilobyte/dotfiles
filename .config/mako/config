@@ -1,5 +1,6 @@
 font=Iosevka 10
 output=""
+default-timeout=5000
 background-color=#689d6a
 progress-color=#ebdbb2
 text-color=#1d2021

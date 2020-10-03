@@ -21,3 +21,4 @@ source $HOME/.aliases
 # make applications use wayland
 # export MOZ_ENABLE_WAYLAND=true
 # export QT_QPA_PLATFORM=wayland
+source /usr/share/nvm/init-nvm.sh
