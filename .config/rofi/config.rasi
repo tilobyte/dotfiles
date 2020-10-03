@@ -1,0 +1,11 @@
+configuration {
+    modi: "run,ssh,drun";
+    terminal: "alacritty";
+    // font: "Cantarell 12";
+    font: "Iosevka 12";
+    sidebar-mode: true;
+    display-run: "commands";
+    display-drun: "apps";
+    kb-clear-line: "Control+l";
+}
+@import "/usr/share/rofi/themes/Pop-Dark.rasi"

@@ -1,0 +1,93 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["sway/workspaces", "tray"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["sway/mode", "pulseaudio", "network", "temperature", "backlight", "custom/redshift", "battery", "clock"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "format": "{name}"
+    },
+    "sway/window": {
+        "max-length": 100
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "tray": {
+        "spacing": 0
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%d %b %Y %I:%M:%S %p}"
+    },
+    "cpu": {
+        "format": " {load}%"
+    },
+    "memory": {
+        //"format": " {}%"
+        "format": "{used:0.1f}G/{total:0.1f}G "
+    },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": " {temperatureF}°F",
+        "format": " {temperatureF}°F"
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set -5%",
+        "format-icons": ["", ""]
+    },
+    "network": {
+        "format-wifi": " {essid}",
+        "format-ethernet": " {ipaddr}/{cidr}",
+        "format-disconnected": "",
+        "on-click": "nm-connection-editor"
+    },
+    "pulseaudio": {
+        "scroll-step": 2,
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "amixer set Master toggle"
+    },
+    "custom/redshift": {
+      "exec": "$PROJECTS_PATH/github.com/gumieri/dotfiles/bin/redshift-waybar",
+      "return-type": "json",
+      "signal": 12,
+      "format": "",
+      "on-click": "$PROJECTS_PATH/github.com/gumieri/dotfiles/bin/redshift-toggle"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "battery": {
+      "interval": 10,
+      "states": {
+          "full": 100,
+          "not-full": 99,
+          "warning": 30,
+          "critical": 15
+      },
+      "format": "{icon} {capacity}%",
+      "format-icons": ["", "", "", "", ""]
+    }
+}
