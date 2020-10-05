@@ -1,5 +1,5 @@
 configuration {
-    modi: "run,ssh,drun";
+    modi: "run,drun";
     terminal: "alacritty";
     // font: "Cantarell 12";
     font: "Iosevka 12";
