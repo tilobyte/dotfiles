@@ -89,11 +89,7 @@
 
 /* The whole bar */
 #waybar {
-    /*background: transparent;*/
-    /* background: @bg0; */
-    /*color: #eceff4;*/
     background: @bg0;
-    /* color: #949494;*/
     color: @fg2;
     font-family: Cantarell, Noto Sans, Iosevka, xos4 Terminus, FiraCode;
     font-size: 13px;
@@ -198,18 +194,18 @@
 }
 
 #network {
+    background: @bg4;
+    color: @fg0;
+}
+
+#memory {
     background: @fg2;
     color: @bg0;
 }
 
-#memory {
+#cpu {
     background: @bg2;
     color: @fg0;
-}
-
-#cpu {
-    background: @fg0;
-    color: @bg0;
 }
 
 #temperature {
@@ -248,7 +244,7 @@
 }
 
 #pulseaudio { /* Unsused but kept for those who needs it */
-    background: @bg4;
+    background: @bg2;
     color: @fg0;
 }
 
@@ -257,45 +253,44 @@
 }
 
 #custom-media {
-    /* no styles */
-    background: @fg0;
+    background: @fg2;
     color: @bg0;
 }
 
 #custom-arrow1 {
     font-size: 16px;
-    color: @fg0;
+    color: @fg2;
     background: transparent;
 }
 
 #custom-arrow2 {
     font-size: 16px;
-    color: @bg4;
-    background: @fg0;
+    color: @bg2;
+    background: @fg2;
 }
 
 #custom-arrow3 {
+    font-size: 16px;
+    color: @bg4;
+    background: @bg2;
+}
+
+#custom-arrow4 {
     font-size: 16px;
     color: @fg2;
     background: @bg4;
 }
 
-#custom-arrow4 {
+#custom-arrow5 {
     font-size: 16px;
     color: @bg2;
     background: @fg2;
 }
 
-#custom-arrow5 {
-    font-size: 16px;
-    color: @fg0;
-    background: @bg2;
-}
-
 #custom-arrow6 {
     font-size: 16px;
     color: @bg4;
-    background: @fg0;
+    background: @bg2;
 }
 
 #custom-arrow7 {

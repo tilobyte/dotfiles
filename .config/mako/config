@@ -1,9 +1,9 @@
 font=Iosevka 10
 output=""
 default-timeout=5000
-background-color=#689d6a
+background-color=#504945
 progress-color=#ebdbb2
-text-color=#1d2021
-border-color=#ebdbb2
+text-color=#ebdbb2
+border-color=#d65d0e
 border-radius=2
 border-size=5
