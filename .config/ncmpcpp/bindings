@@ -553,4 +553,6 @@ def_key "`"
 #
 #def_key "q"
 #  quit
-#
+
+def_key "ctrl-o"
+    run_external_command "$HOME/.config/ncmpcpp/view_images.sh"
