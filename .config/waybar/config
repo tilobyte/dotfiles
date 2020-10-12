@@ -13,32 +13,32 @@
 
     "layer": "top",
     "position": "top",
-    "height": 22,
+    //"height": 22, // disabled = auto
 
     "modules-left": [
     	"sway/mode",
         "sway/workspaces",
         "custom/arrow10",
-	    "sway/window"
+	"sway/window"
     ],
 
-    //"modules-center": [
-    //    "sway/window"
-    //],
+    "modules-center": [
+
+    ],
 
     "modules-right": [
         "custom/arrow1",
-        "custom/alsa",
+        "custom/media",
         "custom/arrow2",
-        "network",
+        "pulseaudio",
         "custom/arrow3",
-        "memory",
+        "network",
         "custom/arrow4",
-        "cpu",
+        "memory",
         "custom/arrow5",
-        "temperature",
+        "cpu",
         "custom/arrow6",
-        "custom/keyboard-layout",
+        "temperature",
         "custom/arrow7",
         "battery",
         "custom/arrow8",
@@ -72,7 +72,8 @@
 
     "clock#time": {
         "interval": 10,
-        "format": "{:%H:%M}",
+        //"format": "{:%H:%M}",
+        "format": "{:%I:%M %p}",
         "tooltip": false
     },
 
@@ -105,7 +106,8 @@
 
     "memory": {
         "interval": 5,
-        "format": " {}%", // Icon: memory
+        //"format": " {}%", // Icon: memory
+        "format": " {}%", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -118,9 +120,9 @@
         //"format-ethernet": " {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-ethernet": " {ifname}",
         "format-disconnected": "Disconnected",
-        //"tooltip-format": "{ifname}: {ipaddr}",
-        "tooltip": false,
-        "on-click": "cmst"
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "tooltip": true,
+        "on-click": "alacritty -e nmtui"
     },
 
     "sway/mode": {
@@ -164,7 +166,7 @@
             "car": "",
             "default": ["", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "alacritty -t ncpamixer -e /usr/bin/ncpamixer"
     },
 
     "temperature": {
@@ -245,5 +247,15 @@
     "custom/arrow10": {
         "format": "",
         "tooltip": false
+    },
+
+    "custom/media": {
+        "format":"{}",
+       "return-type": "json",
+       "max-length":55,
+       "interval":1,
+       "exec":"$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
+       "exec-on-event":"$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
+       "on-click": "playerctl play-pause"
     }
 }

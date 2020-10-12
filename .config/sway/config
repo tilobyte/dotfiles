@@ -29,6 +29,16 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 # workspaces
+# set $ws1 web
+# set $ws2 code
+# set $ws3 docs
+# set $ws4 zoom
+# set $ws5 5
+# set $ws6 music
+# set $ws7 terms
+# set $ws8 8
+# set $ws9 9
+# set $ws0 0
 set $ws1 web
 set $ws2 music
 set $ws3 terms
@@ -45,8 +55,10 @@ set $ws0 0
 # add second monitor
 output DP-1 mode 1920x1080@144.001007Hz
 # wallpaper
-output * bg $HOME/photos/wallpapers/train_long_exposure2.jpg fill
-# color theme (gruvdox)
+# output * bg $HOME/photos/wallpapers/train_long_exposure2.jpg fill
+output * bg $HOME/photos/wallpapers/Nature/dustymountains.jpg fill
+
+# color theme (gruvbox)
 # class                 border|backgr|text|indicator|child_border
 client.focused          $darkgray $darkgray $yellow $aqua $orange
 client.focused_inactive $darkgray $darkgray $gray $aqua $darkgray
@@ -56,8 +68,11 @@ client.urgent           $red $red $white $red $red
 default_border pixel 3
 default_floating_border pixel 3
 gaps inner 10
+smart_gaps on
+smart_borders on
 font pango:Iosevka 10
-seat seat0 hide_cursor 3000
+# seat seat0 hide_cursor 3000
+seat seat0 hide_cursor 10000
 seat seat0 xcursor_theme Bibata-Original-Classic 24
 
 ### Idle configuration
@@ -72,6 +87,16 @@ seat seat0 xcursor_theme Bibata-Original-Classic 24
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
+exec swayidle -w \
+    timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'\
+    timeout 1200 'systemctl suspend'\
+    timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' resume 'swaymsg "output * dpms on"' \
+    timeout 30 'if pgrep -x swaylock; then systemctl suspend; fi'\
+    before-sleep 'loginctl lock-session $XDG_SESSION_ID'\
+    lock 'playerctl -a pause && swaylock'
+    # idlehint 15  
+    # idlehint 900\  
+# send idle hint to logind after 15 minutes; per logind.conf, we will suspend after additional 5 minutes
 
 ### Input configuration
 #
@@ -148,7 +173,12 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit?' -b 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit?' -b 'Yes, exit sway' 'swaymsg exit'
+
+    # exit prompt
+    bindsym $mod+Escape exec /usr/bin/nwgbar -o 0.2k
+    # bindsym $mod+asciitilde exec /usr/bin/swaylock
+    bindsym $mod+asciitilde exec "loginctl lock-session $XDG_SESSION_ID"
 
 #
 # Moving around:
@@ -190,14 +220,23 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     workspace $ws3 output eDP-1
     workspace $ws4 output DP-1 eDP-1
     workspace $ws5 output DP-1 eDP-1
-    workspace $ws6 output eDP-1
-    workspace $ws7 output eDP-1
-    workspace $ws8 output eDP-1
+    workspace $ws6 output DP-1 eDP-1
+    workspace $ws7 output DP-1 eDP-1
+    workspace $ws8 output DP-1 eDP-1
     workspace $ws9 output DP-1 eDP-1
     workspace $ws0 output DP-1 eDP-1
+    # workspace $ws1 output DP-1 eDP-1
+    # workspace $ws2 output eDP-1
+    # workspace $ws3 output eDP-1
+    # workspace $ws4 output DP-1 eDP-1
+    # workspace $ws5 output DP-1 eDP-1
+    # workspace $ws6 output eDP-1
+    # workspace $ws7 output eDP-1
+    # workspace $ws8 output eDP-1
+    # workspace $ws9 output DP-1 eDP-1
+    # workspace $ws0 output DP-1 eDP-1
 
     # Switch to workspace
-    bindsym $mod+0 workspace $ws0
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
     bindsym $mod+3 workspace $ws3
@@ -207,6 +246,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+7 workspace $ws7
     bindsym $mod+8 workspace $ws8
     bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws0
     # Move focused container to workspace
     bindsym $mod+Shift+0 move container to workspace $ws0
     bindsym $mod+Shift+1 move container to workspace $ws1
@@ -220,7 +260,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+Shift+9 move container to workspace $ws9
 
     # assign workspaces
-    assign [app_id="firefox"] $ws1
+    #assign [app_id="firefox"] $ws1
     # spotify requires for_window for some reason
     for_window [class="Spotify"] move to workspace $ws2
     assign [app_id="org.pwmt.zathura"] $ws5
@@ -255,6 +295,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
 
     # application-specific layout settings
     for_window [title="Firefox - Choose User Profile"] floating enable
+    for_window [title="nmtui"] floating enable
+    for_window [title="ncpamixer"] floating enable
+    for_window [title="Volume Control"] floating enable
+    for_window [title="KeePassXC - Browser Access Request"] floating enable
     for_window [class="zoom"] layout tabbed
 #
 # Scratchpad:
@@ -322,11 +366,11 @@ exec mako
 # depends on notifications
 exec mpDris2
 exec kdeconnect-indicator
-exec firefox -P
 exec spicetify auto
 exec --no-startup-id swaymsg 'workspace $ws3; exec alacritty'
 exec --no-startup-id swaymsg 'workspace $ws3; exec alacritty'
-exec swaymsg 'workspace $ws2'
-exec --no-startup-id swaymsg 'workspace $ws1; exec keepassxc'
+exec swaymsg 'workspace $ws1; exec firefox -P'
+# for some reason keepassxc won't respond to mod+backspace when autostarted
+# exec keepassxc
 
 include /etc/sway/config.d/*

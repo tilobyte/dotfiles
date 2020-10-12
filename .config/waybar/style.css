@@ -12,22 +12,22 @@
 
 @keyframes blink-warning {
     70% {
-        color: @light;
+        color: @fg0;
     }
 
     to {
-        color: @light;
+        color: @fg0;
         background-color: @warning;
     }
 }
 
 @keyframes blink-critical {
     70% {
-      color: @light;
+      color: @fg0;
     }
 
     to {
-        color: @light;
+        color: @fg0;
         background-color: @critical;
     }
 }
@@ -89,10 +89,13 @@
 
 /* The whole bar */
 #waybar {
-    background: transparent;
+    /*background: transparent;*/
     /* background: @bg0; */
-    color: #eceff4;
-    font-family: Iosevka, xos4 Terminus, FiraCode, Noto Sans;
+    /*color: #eceff4;*/
+    background: @bg0;
+    /* color: #949494;*/
+    color: @fg2;
+    font-family: Cantarell, Noto Sans, Iosevka, xos4 Terminus, FiraCode;
     font-size: 13px;
     font-weight: bold;
 }
@@ -158,8 +161,8 @@
 /* And now modules themselves in their respective order */
 
 #mode { /* Shown current Sway mode (resize etc.) */
-    color: @light;
-    background: #bf616a;
+    color: @fg0;
+    background: @dark-red;
 }
 
 /* Workspaces stuff */
@@ -171,17 +174,17 @@
     padding-top: 3px;*/
     padding-left: 5px;
     padding-right: 5px;
-    color: @dark;
-    background: #5e81ac;
+    background: @bg3;
+    color: @fg0;
 }
 
 #workspaces button.focused {
-    background: #81a1c1;
+    background: @dark-orange;
 }
 
 #workspaces button.urgent { /* Not used at all, maybe I'll delete it soon */
-    border-color: #c9545d;
-    color: #c9545d;
+    border-color: @light-red;
+    /* color: #c9545d; */
 }
 
 #window {
@@ -195,114 +198,126 @@
 }
 
 #network {
-    background: #4c566a;
-    color: @light;
+    background: @fg2;
+    color: @bg0;
 }
 
 #memory {
-    background: #88c0d0;
-    color: @dark;
+    background: @bg2;
+    color: @fg0;
 }
 
 #cpu {
-    background: #434c5e;
-    color: @light;
+    background: @fg0;
+    color: @bg0;
 }
 
 #temperature {
-    background: #d8dee9;
-    color: @dark;
+    background: @bg4;
+    color: @fg0;
 }
 
 #custom-keyboard-layout {
     background: #5e81ac;
-    color: @light;
+    color: @fg0;
 }
 
 #battery {
-    background: #88c0d0;
-    color: @dark;
+    /* background: #88c0d0;
+    color: @dark; */
+    background: @fg2;
+    color: @bg0;
 }
 
 #tray {
-    background: #2e3440;
+    background: @bg2;
 }
 
 #clock.date {
-    background: #2e3440;
-    color: @light;
+    /* background: #2e3440;
+    color: @fg0; */
+    background: @bg2;
+    color: @fg0;
 }
 
 #clock.time {
-    background: #eceff4;
-    color: @dark;
+    /*background: #eceff4;
+    color: @dark; */
+    background: @fg0;
+    color: @bg0;
 }
 
 #pulseaudio { /* Unsused but kept for those who needs it */
-    background: #d8dee9;
-    color: @dark
+    background: @bg4;
+    color: @fg0;
 }
 
 #pulseaudio.muted {
     /* No styles */
 }
 
+#custom-media {
+    /* no styles */
+    background: @fg0;
+    color: @bg0;
+}
+
 #custom-arrow1 {
     font-size: 16px;
-    color: #d8dee9;
+    color: @fg0;
     background: transparent;
 }
 
 #custom-arrow2 {
     font-size: 16px;
-    color: #4c566a;
-    background: #d8dee9;
+    color: @bg4;
+    background: @fg0;
 }
 
 #custom-arrow3 {
     font-size: 16px;
-    color: #88c0d0;
-    background: #4c566a;
+    color: @fg2;
+    background: @bg4;
 }
 
 #custom-arrow4 {
     font-size: 16px;
-    color: #434c5e;
-    background: #88c0d0;
+    color: @bg2;
+    background: @fg2;
 }
 
 #custom-arrow5 {
     font-size: 16px;
-    color: #d8dee9;
-    background: #434c5e;
+    color: @fg0;
+    background: @bg2;
 }
 
 #custom-arrow6 {
     font-size: 16px;
-    color: #5e81ac;
-    background: #d8dee9;
+    color: @bg4;
+    background: @fg0;
 }
 
 #custom-arrow7 {
     font-size: 16px;
-    color: #88c0d0;
-    background: #5e81ac;
+    color: @fg2;
+    background: @bg4;
 }
 
 #custom-arrow8 {
     font-size: 16px;
-    color: #2e3440;
-    background: #88c0d0;
+    color: @bg2;
+    background: @fg2;
 }
 
 #custom-arrow9 {
     font-size: 16px;
-    color: #eceff4;
-    background: #2e3440;
+    color: @fg0;
+    background: @bg2;
 }
 
 #custom-arrow10 {
     font-size: 16px;
-    color: #5e81ac;
+    color: @bg3;
     background: transparent;
 }

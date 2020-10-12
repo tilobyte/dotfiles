@@ -1,11 +1,15 @@
 configuration {
-    modi: "run,drun";
-    terminal: "alacritty";
-    // font: "Cantarell 12";
-    font: "Iosevka 12";
-    sidebar-mode: true;
-    display-run: "commands";
-    display-drun: "apps";
-    kb-clear-line: "Control+l";
+	modi: "run,drun";
+	width: 20;
+	columns: 1;
+	font: "Iosevka 12";
+	padding: 20;
+	terminal: "alacritty";
+	line-padding: 2;
+	separator-style: "solid";
+	hide-scrollbar: true;
+	fullscreen: false;
+	color-normal: "#282828, #ebdbb2, #282828, #282828, #458588";
+	color-window: "#282828, #1d2021, #282828";
 }
-@import "/usr/share/rofi/themes/Pop-Dark.rasi"
+@import "custom.rasi"

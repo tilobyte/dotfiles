@@ -1,4 +1,4 @@
-##############################################################
+#############################################################
 ## This is the example bindings file. Copy it to            ##
 ## ~/.ncmpcpp/bindings or $XDG_CONFIG_HOME/ncmpcpp/bindings ##
 ## and set up your preferences                              ##
@@ -217,9 +217,9 @@ def_key "ctrl-d"
 #def_key "enter"
 #  play_item
 #
-#def_key "space"
-#  add_item_to_playlist
-#
+def_key "space"
+    pause
+
 #def_key "space"
 #  toggle_lyrics_update_on_song_change
 #
@@ -313,8 +313,8 @@ def_key "ctrl-d"
 #def_key "s"
 #  stop
 #
-#def_key "p"
-#  pause
+def_key "p"
+    add_item_to_playlist
 #
 #def_key ">"
 #  next
@@ -449,7 +449,8 @@ def_key "ctrl-d"
 #  jump_to_position_in_song
 #
 #def_key "l"
-#  show_lyrics
+def_key "L"
+  show_lyrics
 #
 #def_key "ctrl-v"
 #  select_range
