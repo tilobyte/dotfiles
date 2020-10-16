@@ -4,7 +4,7 @@ configuration {
 	columns: 1;
 	font: "Iosevka 12";
 	padding: 20;
-	terminal: "alacritty";
+	terminal: "kitty";
 	line-padding: 2;
 	separator-style: "solid";
 	hide-scrollbar: true;

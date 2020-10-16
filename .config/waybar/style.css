@@ -168,6 +168,9 @@
     /*border-bottom: 3px solid transparent;
     To compensate for the bottom border and still have vertical centering
     padding-top: 3px;*/
+    /* min-width required for some gtk themes to make button width
+     * match length of its label, rather than being a fixed width */
+    min-width: 0;
     padding-left: 5px;
     padding-right: 5px;
     background: @bg3;
@@ -223,6 +226,9 @@
     color: @dark; */
     background: @fg2;
     color: @bg0;
+    /* min-width required for some gtk themes to make button width
+     * match length of its label, rather than being a fixed width */
+    min-width: 0;
 }
 
 #tray {

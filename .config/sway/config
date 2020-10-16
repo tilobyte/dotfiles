@@ -14,7 +14,11 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term alacritty
+# alacritty randomly disappears under sway: https://github.com/swaywm/sway/issues/4435
+# set $term alacritty
+set $term kitty
+for_window [app_id="kitty"] opacity 0.93
+# set $ghost kitty --class "ghost" --title "ghost" # command to run when creating a "ghost" window
 set $menu "rofi -show drun | xargs swaymsg exec --"
 # colors (gruvbox)
 set $bg #282828
@@ -39,16 +43,16 @@ set $darkgray #1d2021
 # set $ws8 8
 # set $ws9 9
 # set $ws0 0
-set $ws1 web
-set $ws2 music
-set $ws3 terms
-set $ws4 code
-set $ws5 docs
-set $ws6 zoom
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws0 0
+set $ws1 1:web
+set $ws2 2:music
+set $ws3 3:terms
+set $ws4 4:code
+set $ws5 5:docs
+set $ws6 6:zoom
+set $ws7 7:7
+set $ws8 8:8
+set $ws9 9:9
+set $ws0 0:0
 
 ### input/output/visuals
 #
@@ -89,14 +93,18 @@ seat seat0 xcursor_theme Bibata-Original-Classic 24
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
     timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'\
-    timeout 1200 'systemctl suspend'\
-    timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' resume 'swaymsg "output * dpms on"' \
-    timeout 30 'if pgrep -x swaylock; then systemctl suspend; fi'\
     before-sleep 'loginctl lock-session $XDG_SESSION_ID'\
     lock 'playerctl -a pause && swaylock'
+    # output * dpms on causes a stutter due to a bug. disabling for now
+    # so that the stutter doesn't happen 
+    # https://github.com/swaywm/sway/issues/5591
+    # timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' resume 'swaymsg "output * dpms on"' \
+    # timeout 30 'if pgrep -x swaylock; then systemctl suspend; fi'\
+    # timeout 1200 'systemctl suspend'\
+
+    # send idle hint to logind after 15 minutes; per logind.conf, we will suspend after additional 5 minutes
     # idlehint 15  
     # idlehint 900\  
-# send idle hint to logind after 15 minutes; per logind.conf, we will suspend after additional 5 minutes
 
 ### Input configuration
 #
@@ -131,10 +139,14 @@ input * {
 focus_follows_mouse yes
 mouse_warping output
 # media keys
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioStop exec playerctl stop
+# bindsym XF86AudioPlay exec playerctl --player=%any,firefox play-pause
+# bindsym XF86AudioPrev exec playerctl --player=%any,firefox previous
+# bindsym XF86AudioNext exec playerctl --player=%any,firefox next
+# bindsym XF86AudioStop exec playerctl --player=%any,firefox stop
+bindsym XF86AudioPlay exec playerctl --player=playerctld play-pause
+bindsym XF86AudioPrev exec playerctl --player=playerctld previous
+bindsym XF86AudioNext exec playerctl --player=playerctld next
+bindsym XF86AudioStop exec playerctl --player=playerctld stop
 bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
 bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
 bindsym XF86AudioMute exec pulseaudio-ctl mute
@@ -147,13 +159,19 @@ bindsym XF86MonBrightnessUp exec xbacklight -fps 60 -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
 
 
-
 ### Key bindings
 #
 # Basics:
 #
     # Start a terminal
     bindsym $mod+Return exec $term
+    # Create a "ghost" window - a transparent window for aligning other windows
+    # for_window [app_id="ghost"] opacity 0
+    # bindsym $mod+Shift+Return exec $ghost
+    # an alternate approach -- hit shortcut to toggle invisibility (doesn't work)
+    # bindsym $mod+Shift+Return mark --toggle invis
+    # for_window [con_mark="invis"] opacity set 0
+    # for_window [con_mark=""] opacity set 100
 
     # Kill focused window
     # bindsym $mod+Shift+w kill
@@ -366,10 +384,11 @@ exec mako
 # depends on notifications
 exec mpDris2
 exec kdeconnect-indicator
-exec spicetify auto
-exec --no-startup-id swaymsg 'workspace $ws3; exec alacritty'
-exec --no-startup-id swaymsg 'workspace $ws3; exec alacritty'
+#exec spicetify auto
+exec --no-startup-id swaymsg 'workspace $ws3; exec $term'
+exec --no-startup-id swaymsg 'workspace $ws3; exec $term'
 exec swaymsg 'workspace $ws1; exec firefox -P'
+exec --no-startup-id swaymsg 'workspace $ws2; exec spicetify auto'
 # for some reason keepassxc won't respond to mod+backspace when autostarted
 # exec keepassxc
 
