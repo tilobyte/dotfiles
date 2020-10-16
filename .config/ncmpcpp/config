@@ -434,7 +434,7 @@ media_library_primary_tag = album_artist
 ## Note: if below is enabled, ncmpcpp will ignore leading "The" word while
 ## sorting items in browser, tags in media library, etc.
 ##
-#ignore_leading_the = no
+ignore_leading_the = yes
 #
 ##
 ## Note: if below is enabled, ncmpcpp will ignore diacritics while searching and
@@ -540,6 +540,7 @@ use_console_editor = yes
 #player_state_color = default:b
 #
 #alternative_ui_separator_color = black:b
+alternative_ui_separator_color = black:b
 #
 #window_border_color = green
 #
@@ -550,11 +551,12 @@ use_console_editor = yes
 #### Playlist formatting
 #song_list_format = "$6 {%a »$4 %t $/r                                                                                                                                       $R                             }|{%f$/r                                                                                                                                     }"
 #  
-song_list_format = "$6{%a -$2 %t $/r$/u$R$b$0$/b  }|{%f$/r}"
+#song_list_format = "$6{%a -$2 %t $/r$/u$R$b$0$/b  }|{%f$/r}"
+song_list_format = "$7{%n: $8%a · %t}|{%f} $R$8%l"
 #now_playing_prefix = "$b$6  "
 #now_playing_suffix = "$/b"
 #now_playing_prefix = "$b$6>>> "
-now_playing_prefix = "$b$6▶ "
+now_playing_prefix = "$b$7▶ "
 playlist_display_mode = "classic"
 selected_item_prefix = "$b$6>>> "
 
@@ -570,8 +572,8 @@ song_columns_list_format = "(50)[6]{t} (50)[4]{ar} $b(5f)[9]$/b"
 #song_columns_list_format = "(25)[6]{a} (25)[4]{tr} (5)[6]{lr:Length}"
 
 #### Colors
-header_window_color = "blue"
-main_window_color =  magenta
+header_window_color = "white"
+main_window_color =  white
 #alternative_ui_separator_color = 0
 
 #### General formatting
@@ -579,14 +581,15 @@ titles_visibility = "no"
 header_visibility = "yes"
 statusbar_visibility = "yes"
 playlist_show_remaining_time = yes
-volume_color = "blue:b"
-/*alternative_header_first_line_format =$(2_16)$b» {%f} «$/b$9*/
-alternative_header_first_line_format =$6$b {%a} $/b
-alternative_header_second_line_format =$2{%t}|{/%D/}
-user_interface = classic
-current_item_prefix = $(16)$r
+# volume_color = "blue:b"
+#alternative_header_first_line_format =$(2_16)$b» {%f} «$/b$9
+alternative_header_first_line_format =$7$b {%a} $/b
+alternative_header_second_line_format =$4{%t}|{/%D/}
+user_interface = alternative
+#current_item_prefix = $(16)$r
+current_item_prefix = $7$r
 current_item_suffix = $/r$(end)
-song_status_format = "{$b$2$8%a $5 $6%b $5 $8%t}|{$b$2 $8%f}"
+song_status_format = "{$b$2$8%a $8 $8%b $8 $8%t}|{$b$2 $8%f}"
 
 #### Misc stuff
 discard_colors_if_item_is_selected = "yes"
@@ -611,29 +614,4 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 
 active_window_border = blue
 
-browser_display_mode = columns
-
-# adapted from https://github.com/rajshekhar26/dotfiles
-# visualizer_type = "spectrum"
-# visualizer_look = "∙│"
-# visualizer_color = magenta
-# 
-# song_list_format = "{{%a - %t}|{%f}}{$R%l}"
-# current_item_prefix = $(magenta)$r
-# current_item_inactive_column_prefix = $(white)$r
-# now_playing_prefix = "$6"
-# now_playing_suffix = "$9"
-# main_window_color = white
-# 
-# playlist_display_mode = "classic"
-# user_interface = classic
-# header_visibility = "no"
-# statusbar_visibility = "no"
-# titles_visibility = "no"
-# 
-# # follow_now_playing_lyrics = yes
-# # fetch_lyrics_for_current_song_in_background = yes
-# 
-# progressbar_look = "─╼ "
-# #progressbar_look = "▂▂ "
-# progressbar_elapsed_color = "cyan"
+browser_display_mode = "classic"
