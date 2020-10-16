@@ -1,1 +1,4 @@
 set selection-clipboard clipboard
+set synctex true
+#set synctex-editor-command "nvr --remote-silent %f -c %l"
+set synctex-editor-command "nvr --remote-silent %{input} -c %{line}"
