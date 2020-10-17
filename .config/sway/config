@@ -17,7 +17,7 @@ set $right l
 # alacritty randomly disappears under sway: https://github.com/swaywm/sway/issues/4435
 # set $term alacritty
 set $term kitty
-for_window [app_id="kitty"] opacity 0.93
+#for_window [app_id="kitty"] opacity 0.93
 # set $ghost kitty --class "ghost" --title "ghost" # command to run when creating a "ghost" window
 set $menu "rofi -show drun | xargs swaymsg exec --"
 # colors (gruvbox)
@@ -32,6 +32,7 @@ set $purple #b16286
 set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
+set $transp #FF000000
 # workspaces
 # set $ws1 web
 # set $ws2 code
@@ -65,9 +66,13 @@ output * bg $HOME/photos/wallpapers/Nature/dustymountains.jpg fill
 # color theme (gruvbox)
 # class                 border|backgr|text|indicator|child_border
 client.focused          $darkgray $darkgray $yellow $aqua $orange
-client.focused_inactive $darkgray $darkgray $gray $aqua $darkgray
-client.unfocused        $darkgray $darkgray $gray $aqua $darkgray
+client.focused_inactive $darkgray $darkgray $gray $aqua $transp
+client.unfocused        $darkgray $darkgray $gray $aqua $transp
 client.urgent           $red $red $white $red $red
+# client.focused          $darkgray $darkgray $yellow $aqua $orange
+# client.focused_inactive $darkgray $darkgray $gray $aqua $darkgray
+# client.unfocused        $darkgray $darkgray $gray $aqua $darkgray
+# client.urgent           $red $red $white $red $red
 # remove title bars
 default_border pixel 3
 default_floating_border pixel 3
@@ -151,7 +156,8 @@ bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
 bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
 bindsym XF86AudioMute exec pulseaudio-ctl mute
 # on my mech it's Tools instead of Music
-bindsym XF86Tools exec spicetify auto
+# bindsym XF86Tools exec spicetify auto
+bindsym XF86Tools exec $HOME/.config/sway/music-workspace.sh
 # calculator
 bindsym XF86Calculator exec qalculate-gtk
 # brightness
