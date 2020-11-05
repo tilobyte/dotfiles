@@ -18,7 +18,6 @@
     "modules-left": [
     	"sway/mode",
         "sway/workspaces",
-        "custom/arrow10",
 	"sway/window"
     ],
 
@@ -27,24 +26,15 @@
     ],
 
     "modules-right": [
-        "custom/arrow1",
         "custom/media",
-        "custom/arrow2",
         "pulseaudio",
-        "custom/arrow3",
         "network",
-        "custom/arrow4",
         "memory",
-        "custom/arrow5",
         "cpu",
-        "custom/arrow6",
         "temperature",
-        "custom/arrow7",
         "battery",
-        "custom/arrow8",
         "tray",
         "clock#date",
-        "custom/arrow9",
         "clock#time"
     ],
 
