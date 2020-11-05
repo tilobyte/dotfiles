@@ -17,8 +17,8 @@ let g:startify_lists = [
     \ { 'type': 'bookmarks',     'header': ['   bookmarks']            },
   \ ]
 let g:startify_bookmarks = [
-    \ { 'c': '~/.config/sway/config' },
     \ { 'n': '~/.config/nvim/init.vim' },
+    \ { 's': '~/.config/sway/config' },
     \ { 'z': '~/.zshrc' },
     \ '~/onedrive-cse/courses/Y3/cse 590 dl/homework'
   \ ]

@@ -11,27 +11,26 @@
  * -------------------------------------------------------------------------- */
 
 @keyframes blink-warning {
-    70% {
-        color: @fg0;
-    }
+  70% {
+    color: @fg0;
+  }
 
-    to {
-        color: @fg0;
-        background-color: @warning;
-    }
+  to {
+    color: @fg0;
+    background-color: @warning;
+  }
 }
 
 @keyframes blink-critical {
-    70% {
-      color: @fg0;
-    }
+  70% {
+    color: @fg0;
+  }
 
-    to {
-        color: @fg0;
-        background-color: @critical;
-    }
+  to {
+    color: @fg0;
+    background-color: @critical;
+  }
 }
-
 
 /* -----------------------------------------------------------------------------
  * Styles
@@ -80,20 +79,20 @@
 
 /* Reset all styles */
 * {
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
 }
 
 /* The whole bar */
 #waybar {
-    background: @bg0;
-    color: @fg2;
-    font-family: Cantarell, Noto Sans, Iosevka, xos4 Terminus, FiraCode;
-    font-size: 13px;
-    font-weight: bold;
+  background: @bg0;
+  color: @fg2;
+  font-family: Cantarell, Noto Sans, Iosevka, xos4 Terminus, FiraCode;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 /* Each module */
@@ -108,8 +107,8 @@
 #temperature,
 #custom-alsa,
 #tray {
-    padding-left: 10px;
-    padding-right: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Each module that should blink */
@@ -117,9 +116,9 @@
 #memory,
 #temperature,
 #battery {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 /* Each critical module */
@@ -127,7 +126,7 @@
 #cpu.critical,
 #temperature.critical,
 #battery.critical {
-    color: @critical;
+  color: @critical;
 }
 
 /* Each critical that should blink */
@@ -135,8 +134,8 @@
 #memory.critical,
 #temperature.critical,
 #battery.critical.discharging {
-    animation-name: blink-critical;
-    animation-duration: 2s;
+  animation-name: blink-critical;
+  animation-duration: 2s;
 }
 
 /* Each warning */
@@ -145,180 +144,183 @@
 #cpu.warning,
 #temperature.warning,
 #battery.warning {
-    color: @warning;
+  color: @warning;
 }
 
 /* Each warning that should blink */
 #battery.warning.discharging {
-    animation-name: blink-warning;
-    animation-duration: 3s;
+  animation-name: blink-warning;
+  animation-duration: 3s;
 }
 
 /* And now modules themselves in their respective order */
 
-#mode { /* Shown current Sway mode (resize etc.) */
-    color: @fg0;
-    background: @dark-red;
+#mode {
+  /* Shown current Sway mode (resize etc.) */
+  color: @fg0;
+  background: @dark-red;
 }
 
 /* Workspaces stuff */
 #workspaces button {
-    font-weight: bold; /* Somewhy the bar-wide setting is ignored*/
-    /* All these comments are here just for reference */
-    /*border-bottom: 3px solid transparent;
+  font-weight: bold; /* Somewhy the bar-wide setting is ignored*/
+  /* All these comments are here just for reference */
+  /*border-bottom: 3px solid transparent;
     To compensate for the bottom border and still have vertical centering
     padding-top: 3px;*/
-    /* min-width required for some gtk themes to make button width
+  /* min-width required for some gtk themes to make button width
      * match length of its label, rather than being a fixed width */
-    min-width: 0;
-    padding-left: 5px;
-    padding-right: 5px;
-    background: @bg3;
-    color: @fg0;
+  min-width: 0;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: @bg3;
+  color: @fg0;
 }
 
 #workspaces button.focused {
-    background: @dark-orange;
+  background: @dark-orange;
 }
 
-#workspaces button.urgent { /* Not used at all, maybe I'll delete it soon */
-    border-color: @light-red;
-    /* color: #c9545d; */
+#workspaces button.urgent {
+  /* Not used at all, maybe I'll delete it soon */
+  border-color: @light-red;
+  /* color: #c9545d; */
 }
 
 #window {
-    margin-right: 40px;
-    margin-left: 40px;
+  margin-right: 40px;
+  margin-left: 40px;
 }
 
 #custom-alsa {
-    background: #d8dee9;
-    color: @dark;
+  background: #d8dee9;
+  color: @dark;
 }
 
 #network {
-    background: @bg4;
-    color: @fg0;
+  background: @bg4;
+  color: @fg0;
 }
 
 #memory {
-    background: @fg2;
-    color: @bg0;
+  background: @fg2;
+  color: @bg0;
 }
 
 #cpu {
-    background: @bg2;
-    color: @fg0;
+  background: @bg2;
+  color: @fg0;
 }
 
 #temperature {
-    background: @bg4;
-    color: @fg0;
+  background: @bg4;
+  color: @fg0;
 }
 
 #custom-keyboard-layout {
-    background: #5e81ac;
-    color: @fg0;
+  background: #5e81ac;
+  color: @fg0;
 }
 
 #battery {
-    /* background: #88c0d0;
+  /* background: #88c0d0;
     color: @dark; */
-    background: @fg2;
-    color: @bg0;
-    /* min-width required for some gtk themes to make button width
+  background: @fg2;
+  color: @bg0;
+  /* min-width required for some gtk themes to make button width
      * match length of its label, rather than being a fixed width */
-    min-width: 0;
+  min-width: 0;
 }
 
 #tray {
-    background: @bg2;
+  background: @bg2;
 }
 
 #clock.date {
-    /* background: #2e3440;
+  /* background: #2e3440;
     color: @fg0; */
-    background: @bg2;
-    color: @fg0;
+  background: @bg2;
+  color: @fg0;
 }
 
 #clock.time {
-    /*background: #eceff4;
+  /*background: #eceff4;
     color: @dark; */
-    background: @fg0;
-    color: @bg0;
+  background: @fg2;
+  color: @bg0;
 }
 
-#pulseaudio { /* Unsused but kept for those who needs it */
-    background: @bg2;
-    color: @fg0;
+#pulseaudio {
+  /* Unsused but kept for those who needs it */
+  background: @bg2;
+  color: @fg0;
 }
 
 #pulseaudio.muted {
-    /* No styles */
+  /* No styles */
 }
 
 #custom-media {
-    background: @fg2;
-    color: @bg0;
+  background: @fg2;
+  color: @bg0;
 }
 
 #custom-arrow1 {
-    font-size: 16px;
-    color: @fg2;
-    background: transparent;
+  font-size: 16px;
+  color: @fg2;
+  background: transparent;
 }
 
 #custom-arrow2 {
-    font-size: 16px;
-    color: @bg2;
-    background: @fg2;
+  font-size: 16px;
+  color: @bg2;
+  background: @fg2;
 }
 
 #custom-arrow3 {
-    font-size: 16px;
-    color: @bg4;
-    background: @bg2;
+  font-size: 16px;
+  color: @bg4;
+  background: @bg2;
 }
 
 #custom-arrow4 {
-    font-size: 16px;
-    color: @fg2;
-    background: @bg4;
+  font-size: 16px;
+  color: @fg2;
+  background: @bg4;
 }
 
 #custom-arrow5 {
-    font-size: 16px;
-    color: @bg2;
-    background: @fg2;
+  font-size: 16px;
+  color: @bg2;
+  background: @fg2;
 }
 
 #custom-arrow6 {
-    font-size: 16px;
-    color: @bg4;
-    background: @bg2;
+  font-size: 16px;
+  color: @bg4;
+  background: @bg2;
 }
 
 #custom-arrow7 {
-    font-size: 16px;
-    color: @fg2;
-    background: @bg4;
+  font-size: 16px;
+  color: @fg2;
+  background: @bg4;
 }
 
 #custom-arrow8 {
-    font-size: 16px;
-    color: @bg2;
-    background: @fg2;
+  font-size: 16px;
+  color: @bg2;
+  background: @fg2;
 }
 
 #custom-arrow9 {
-    font-size: 16px;
-    color: @fg0;
-    background: @bg2;
+  font-size: 16px;
+  color: @fg2;
+  background: @bg2;
 }
 
 #custom-arrow10 {
-    font-size: 16px;
-    color: @bg3;
-    background: transparent;
+  font-size: 16px;
+  color: @bg3;
+  background: transparent;
 }

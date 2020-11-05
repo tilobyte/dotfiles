@@ -5,6 +5,10 @@
 # Read `man 5 sway` for a complete reference.
 
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+# fix slow gtk application launches (https://github.com/swaywm/sway/issues/5732)
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 ### Variables
 #
@@ -33,6 +37,7 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 set $transp #FF000000
+set $transpbg #282828DD
 # workspaces
 # set $ws1 web
 # set $ws2 code
@@ -49,8 +54,8 @@ set $ws2 2:music
 set $ws3 3:terms
 set $ws4 4:code
 set $ws5 5:docs
-set $ws6 6:zoom
-set $ws7 7:7
+set $ws6 6:video
+set $ws7 7:notes
 set $ws8 8:8
 set $ws9 9:9
 set $ws0 0:0
@@ -65,10 +70,17 @@ output * bg $HOME/photos/wallpapers/Nature/dustymountains.jpg fill
 
 # color theme (gruvbox)
 # class                 border|backgr|text|indicator|child_border
-client.focused          $darkgray $darkgray $yellow $aqua $orange
-client.focused_inactive $darkgray $darkgray $gray $aqua $transp
-client.unfocused        $darkgray $darkgray $gray $aqua $transp
-client.urgent           $red $red $white $red $red
+# client.focused          $darkgray $darkgray $yellow $aqua $orange
+
+
+# try making borders of unfocused not quite transparent but same
+# color & transparency as terminals
+
+
+client.focused          $darkgray $gray $bg $aqua $orange
+client.focused_inactive $darkgray $darkgray $gray $aqua $transpbg
+client.unfocused        $darkgray $darkgray $gray $aqua $transpbg
+client.urgent           $blue $blue $white $blue $blue
 # client.focused          $darkgray $darkgray $yellow $aqua $orange
 # client.focused_inactive $darkgray $darkgray $gray $aqua $darkgray
 # client.unfocused        $darkgray $darkgray $gray $aqua $darkgray
@@ -96,10 +108,11 @@ seat seat0 xcursor_theme Bibata-Original-Classic 24
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-exec swayidle -w \
-    timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'\
-    before-sleep 'loginctl lock-session $XDG_SESSION_ID'\
-    lock 'playerctl -a pause && swaylock'
+# exec swayidle -w \
+    # timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'\
+    # before-sleep 'loginctl lock-session $XDG_SESSION_ID'\
+    # lock 'playerctl -a pause && swaylock'
+
     # output * dpms on causes a stutter due to a bug. disabling for now
     # so that the stutter doesn't happen 
     # https://github.com/swaywm/sway/issues/5591
@@ -171,17 +184,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
 #
     # Start a terminal
     bindsym $mod+Return exec $term
-    # Create a "ghost" window - a transparent window for aligning other windows
-    # for_window [app_id="ghost"] opacity 0
-    # bindsym $mod+Shift+Return exec $ghost
-    # an alternate approach -- hit shortcut to toggle invisibility (doesn't work)
-    # bindsym $mod+Shift+Return mark --toggle invis
-    # for_window [con_mark="invis"] opacity set 0
-    # for_window [con_mark=""] opacity set 100
 
     # Kill focused window
     # bindsym $mod+Shift+w kill
-    bindsym $mod+backspace kill
+    bindsym $mod+Escape kill
 
     # Start your launcher
     bindsym $mod+Space exec $menu
@@ -200,9 +206,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     # bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit?' -b 'Yes, exit sway' 'swaymsg exit'
 
     # exit prompt
-    bindsym $mod+Escape exec /usr/bin/nwgbar -o 0.2k
+    bindsym $mod+shift+Backspace exec /usr/bin/nwgbar -o 0.2k
     # bindsym $mod+asciitilde exec /usr/bin/swaylock
-    bindsym $mod+asciitilde exec "loginctl lock-session $XDG_SESSION_ID"
+    bindsym $mod+backspace exec "loginctl lock-session $XDG_SESSION_ID"
 
 #
 # Moving around:
@@ -245,7 +251,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     workspace $ws4 output DP-1 eDP-1
     workspace $ws5 output DP-1 eDP-1
     workspace $ws6 output DP-1 eDP-1
-    workspace $ws7 output DP-1 eDP-1
+    workspace $ws7 output eDP-1
     workspace $ws8 output DP-1 eDP-1
     workspace $ws9 output DP-1 eDP-1
     workspace $ws0 output DP-1 eDP-1
@@ -289,6 +295,8 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     for_window [class="Spotify"] move to workspace $ws2
     assign [app_id="org.pwmt.zathura"] $ws5
     assign [class="zoom"] $ws6
+    assign [class="Write"] $ws7
+    assign [app_id="com.github.xournalpp.xournalpp"] $ws7
 #
 # Layout stuff:
 #
@@ -323,7 +331,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     for_window [title="ncpamixer"] floating enable
     for_window [title="Volume Control"] floating enable
     for_window [title="KeePassXC - Browser Access Request"] floating enable
-    for_window [class="zoom"] layout tabbed
+    for_window [title="Firefox - Sharing Indicator"] floating enable
+    # for_window [class="zoom"] layout tabbed
+    for_window [class="zoom"] floating enable
 #
 # Scratchpad:
 #
@@ -390,11 +400,12 @@ exec mako
 # depends on notifications
 exec mpDris2
 exec kdeconnect-indicator
+exec blueman-applet
 #exec spicetify auto
 exec --no-startup-id swaymsg 'workspace $ws3; exec $term'
 exec --no-startup-id swaymsg 'workspace $ws3; exec $term'
 exec swaymsg 'workspace $ws1; exec firefox -P'
-exec --no-startup-id swaymsg 'workspace $ws2; exec spicetify auto'
+exec --no-startup-id swaymsg 'workspace $ws2; exec $HOME/.config/sway/music-workspace.sh'
 # for some reason keepassxc won't respond to mod+backspace when autostarted
 # exec keepassxc
 

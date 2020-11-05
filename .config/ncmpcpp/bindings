@@ -551,8 +551,10 @@ def_key "`"
 #def_key "ctrl-p"
 #  set_selected_items_priority
 #
-#def_key "q"
-#  quit
+def_key "ctrl-q"
+  quit
+def_key "q"
+  dummy
 
 def_key "ctrl-o"
     run_external_command "$HOME/.config/ncmpcpp/view_images.sh"

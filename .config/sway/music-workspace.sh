@@ -11,7 +11,7 @@ sleep 0.5s
 swaymsg "splitv"
 swaymsg "exec kitty /usr/bin/cava"
 sleep 1s
-swaymsg "focus child; resize set height 22; focus left; splitv; exec kitty"
+swaymsg "focus child; resize set height 23; focus left; splitv; exec kitty"
 sleep 1s
 swaymsg "focus child; resize set height 30; focus up"
 # swaymsg "focus child; resize set width 57; resize set height 20"

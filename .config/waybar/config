@@ -167,7 +167,8 @@
             "car": "",
             "default": ["", ""]
         },
-        "on-click": "alacritty -t ncpamixer -e /usr/bin/ncpamixer"
+        /* "on-click": "alacritty -t ncpamixer -e /usr/bin/ncpamixer" */
+        "on-click": "pavucontrol"
     },
 
     "temperature": {
@@ -257,6 +258,6 @@
        "interval":1,
        "exec":"$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
        "exec-on-event":"$HOME/.config/waybar/mediaplayer.sh 2> /dev/null",
-       "on-click": "playerctl play-pause"
+       "on-click": "playerctl --player=playerctld play-pause"
     }
 }
