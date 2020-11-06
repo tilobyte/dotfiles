@@ -58,7 +58,8 @@
             "", // Icon: battery-quarter
             ""  // Icon: battery-empty
         ],
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "$HOME/.config/waybar/brightness.sh"
     },
 
     "clock#time": {
