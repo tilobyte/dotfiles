@@ -246,8 +246,8 @@
 #clock.time {
   /*background: #eceff4;
     color: @dark; */
-  background: @fg2;
-  color: @bg0;
+  background: @bg2;
+  color: @fg0;
 }
 
 #pulseaudio {

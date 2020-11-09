@@ -1,5 +1,5 @@
 #!/bin/bash
-swaymsg workspace 2:music
+swaymsg workspace 2:mus
 swaymsg "exec kitty sh -c 'sleep 1.5 &&/usr/bin/ncmpcpp'"
 sleep 1s
 swaymsg "exec /home/timothy/bin/imv-ncmpcpp"

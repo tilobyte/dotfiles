@@ -50,12 +50,12 @@ set $transpbg #282828DD
 # set $ws9 9
 # set $ws0 0
 set $ws1 1:web
-set $ws2 2:music
-set $ws3 3:terms
-set $ws4 4:code
-set $ws5 5:docs
-set $ws6 6:video
-set $ws7 7:notes
+set $ws2 2:mus
+set $ws3 3:trm
+set $ws4 4:dev
+set $ws5 5:doc
+set $ws6 6:vid
+set $ws7 7:note
 set $ws8 8:8
 set $ws9 9:9
 set $ws0 0:0
@@ -64,6 +64,8 @@ set $ws0 0:0
 #
 # add second monitor
 output DP-1 mode 1920x1080@144.001007Hz
+output eDP-1 position 200 1080
+output DP-1 position 0 0
 # wallpaper
 # output * bg $HOME/photos/wallpapers/train_long_exposure2.jpg fill
 output * bg $HOME/photos/wallpapers/Nature/dustymountains.jpg fill
@@ -187,7 +189,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
 
     # Kill focused window
     # bindsym $mod+Shift+w kill
-    bindsym $mod+Escape kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+Space exec $menu
@@ -219,11 +221,15 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
     # move focus between displays
-    bindsym $mod+bracketleft focus output left
-    bindsym $mod+bracketright focus output right
+    # bindsym $mod+bracketleft focus output left
+    # bindsym $mod+bracketright focus output right
+    bindsym $mod+bracketleft focus output up
+    bindsym $mod+bracketright focus output down
     # move focus between workspaces
-    bindsym $mod+left workspace prev_on_output
-    bindsym $mod+right workspace next_on_output
+    #bindsym $mod+left workspace prev_on_output
+    #bindsym $mod+right workspace next_on_output
+    bindsym $mod+minus workspace prev_on_output
+    bindsym $mod+equal workspace next_on_output
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -231,14 +237,20 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
     # move focused container between displays
-    bindsym $mod+shift+bracketleft move container to output left
-    bindsym $mod+shift+bracketright move container to output right
+    # bindsym $mod+shift+bracketleft move container to output left
+    # bindsym $mod+shift+bracketright move container to output right
+    bindsym $mod+shift+bracketleft move container to output up
+    bindsym $mod+shift+bracketright move container to output down
     # move focused container between workspaces
-    bindsym $mod+Shift+Left move container to workspace prev_on_output
-    bindsym $mod+Shift+Right move container to workspace next_on_output
+    #bindsym $mod+Shift+Left move container to workspace prev_on_output
+    #bindsym $mod+Shift+Right move container to workspace next_on_output
+    bindsym $mod+Shift+minus move container to workspace prev_on_output
+    bindsym $mod+Shift+equal move container to workspace next_on_output
     # move focused workspace between displays
-    bindsym $mod+shift+minus move workspace to output left
-    bindsym $mod+shift+equal move workspace to output right
+    # bindsym $mod+shift+minus move workspace to output left
+    # bindsym $mod+shift+equal move workspace to output right
+    bindsym $mod+shift+z move workspace to output up
+    bindsym $mod+shift+x move workspace to output down
 
 #
 # Workspaces:
@@ -297,6 +309,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     assign [class="zoom"] $ws6
     assign [class="Write"] $ws7
     assign [app_id="com.github.xournalpp.xournalpp"] $ws7
+    #assign [class="Emacs"] opacity 0.92
 #
 # Layout stuff:
 #
