@@ -19,7 +19,7 @@ fi
 
 # Customize to your needs...
 
-export PATH=/home/timothy/bin:$PATH
+export PATH=/home/timothy/bin:/home/timothy/.emacs.d/bin:$PATH
 
 # import aliases
 source $HOME/.aliases
