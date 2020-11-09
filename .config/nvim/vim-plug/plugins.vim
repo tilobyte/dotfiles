@@ -2,7 +2,8 @@ call plug#begin()
     Plug 'lifepillar/vim-gruvbox8'
     Plug 'vim-airline/vim-airline'
     Plug 'liuchengxu/vim-which-key'
-    Plug 'tpope/vim-commentary'
+    " Plug 'tpope/vim-commentary'
+    Plug 'preservim/nerdcommenter'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
     Plug 'tpope/vim-fugitive'
