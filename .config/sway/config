@@ -110,17 +110,17 @@ seat seat0 xcursor_theme Bibata-Original-Classic 24
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
-# exec swayidle -w \
-    # timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'\
-    # before-sleep 'loginctl lock-session $XDG_SESSION_ID'\
-    # lock 'playerctl -a pause && swaylock'
+exec swayidle -w \
+    timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'\
+    before-sleep 'loginctl lock-session $XDG_SESSION_ID'\
+    lock 'playerctl -a pause && swaylock'\
+    timeout 1200 'systemctl suspend'
 
     # output * dpms on causes a stutter due to a bug. disabling for now
     # so that the stutter doesn't happen 
     # https://github.com/swaywm/sway/issues/5591
     # timeout 15 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' resume 'swaymsg "output * dpms on"' \
     # timeout 30 'if pgrep -x swaylock; then systemctl suspend; fi'\
-    # timeout 1200 'systemctl suspend'\
 
     # send idle hint to logind after 15 minutes; per logind.conf, we will suspend after additional 5 minutes
     # idlehint 15  
@@ -156,6 +156,8 @@ input * {
     xkb_variant "colemak,"
     xkb_options "grp:ctrls_toggle"
 }
+# make holding caps lock work in emacs
+exec xmodmap -e "clear Lock"
 focus_follows_mouse yes
 mouse_warping output
 # media keys
@@ -208,9 +210,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     # bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit?' -b 'Yes, exit sway' 'swaymsg exit'
 
     # exit prompt
-    bindsym $mod+shift+Backspace exec /usr/bin/nwgbar -o 0.2k
+    bindsym $mod+shift+escape exec /usr/bin/nwgbar -o 0.2k
     # bindsym $mod+asciitilde exec /usr/bin/swaylock
-    bindsym $mod+backspace exec "loginctl lock-session $XDG_SESSION_ID"
+    bindsym $mod+escape exec "loginctl lock-session $XDG_SESSION_ID"
 
 #
 # Moving around:
@@ -223,13 +225,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     # move focus between displays
     # bindsym $mod+bracketleft focus output left
     # bindsym $mod+bracketright focus output right
-    bindsym $mod+bracketleft focus output up
-    bindsym $mod+bracketright focus output down
+    bindsym $mod+minus focus output up
+    bindsym $mod+equal focus output down
     # move focus between workspaces
     #bindsym $mod+left workspace prev_on_output
     #bindsym $mod+right workspace next_on_output
-    bindsym $mod+minus workspace prev_on_output
-    bindsym $mod+equal workspace next_on_output
+    bindsym $mod+bracketleft workspace prev_on_output
+    bindsym $mod+bracketright workspace next_on_output
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -239,13 +241,13 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     # move focused container between displays
     # bindsym $mod+shift+bracketleft move container to output left
     # bindsym $mod+shift+bracketright move container to output right
-    bindsym $mod+shift+bracketleft move container to output up
-    bindsym $mod+shift+bracketright move container to output down
+    bindsym $mod+shift+minus move container to output up
+    bindsym $mod+shift+equal move container to output down
     # move focused container between workspaces
     #bindsym $mod+Shift+Left move container to workspace prev_on_output
     #bindsym $mod+Shift+Right move container to workspace next_on_output
-    bindsym $mod+Shift+minus move container to workspace prev_on_output
-    bindsym $mod+Shift+equal move container to workspace next_on_output
+    bindsym $mod+Shift+bracketleft move container to workspace prev_on_output
+    bindsym $mod+Shift+bracketright move container to workspace next_on_output
     # move focused workspace between displays
     # bindsym $mod+shift+minus move workspace to output left
     # bindsym $mod+shift+equal move workspace to output right
@@ -347,6 +349,11 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     for_window [title="Firefox - Sharing Indicator"] floating enable
     # for_window [class="zoom"] layout tabbed
     for_window [class="zoom"] floating enable
+
+    # idle inhibition
+    for_window [class="zoom"] inhibit_idle visible
+    #for_window [app_id="mpv"] inhibit_idle fullscreen
+    #for_window [app_id="firefox"] inhibit_idle fullscreen
 #
 # Scratchpad:
 #
