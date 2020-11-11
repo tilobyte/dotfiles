@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq doom-font (font-spec :family "Iosevka" :size 16))
-(setq doom-variable-pitch-font (font-spec :family "Noto Sans" :size 14))
+(setq doom-variable-pitch-font (font-spec :family "Cantarell" :size 14))
 ;; (setq doom-variable-pitch-font (font-spec :family "Iosevka" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -57,8 +57,27 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; editor
 (setq evil-escape-key-sequence "vk")
 (setq which-key-idle-delay 0.3) ;; training wheels
 ;; transparency (doesn't seem to work on wayland)
 ;; (set-frame-parameter (selected-frame) 'alpha '(92 . 90))
 ;; (add-to-list 'default-frame-alist '(alpha . (92 . 90)))
+
+;; lsp
+(setq company-minimum-prefix-length 1
+      company-idle-delay 0.0) ;; default is 0.2
+;; use black for python files; skip lsp's formatter
+(setq-hook! 'python-mode-hook +format-with-lsp nil)
+
+;; latex
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq TeX-source-correlate-mode t) ;; synctex
+(setq LaTeX-indent-level 4)
+(setq LaTeX-indent-environment-check nil) ;; always use 4 spaces
+;; make auctex understand multi-file documents (\include)
+;; (setq-default TeX-master nil)
+(auctex-latexmk-setup)
+(company-auctex-init)
+(setq +latex-viewers '(zathura))
