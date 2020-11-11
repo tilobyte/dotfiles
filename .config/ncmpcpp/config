@@ -274,6 +274,7 @@ song_library_format = {%n - }{%t}|{%f}
 ## notifications etc.
 ##
 execute_on_song_change = "~/.config/ncmpcpp/art_display.sh"
+#execute_on_song_change = "~/bin/music extract"
 #
 ##
 ## Note: Custom command that will be executed each time player state

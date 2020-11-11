@@ -114,7 +114,7 @@
         "format-disconnected": "Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
         "tooltip": true,
-        "on-click": "alacritty -e nmtui"
+        "on-click": "alacritty -t nmtui -e nmtui"
     },
 
     "sway/mode": {
