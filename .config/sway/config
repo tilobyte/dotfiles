@@ -158,7 +158,7 @@ input * {
 }
 # make holding caps lock work in emacs
 exec xmodmap -e "clear Lock"
-focus_follows_mouse yes
+focus_follows_mouse no
 mouse_warping output
 # media keys
 # bindsym XF86AudioPlay exec playerctl --player=%any,firefox play-pause
@@ -223,15 +223,15 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
     # move focus between displays
-    # bindsym $mod+bracketleft focus output left
-    # bindsym $mod+bracketright focus output right
-    bindsym $mod+minus focus output up
-    bindsym $mod+equal focus output down
+    bindsym $mod+bracketleft focus output up
+    bindsym $mod+bracketright focus output down
+    #bindsym $mod+minus focus output up
+    #bindsym $mod+equal focus output down
     # move focus between workspaces
     #bindsym $mod+left workspace prev_on_output
     #bindsym $mod+right workspace next_on_output
-    bindsym $mod+bracketleft workspace prev_on_output
-    bindsym $mod+bracketright workspace next_on_output
+    bindsym $mod+minus workspace prev_on_output
+    bindsym $mod+equal workspace next_on_output
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -239,20 +239,20 @@ bindsym XF86MonBrightnessDown exec xbacklight -fps 60 -dec 10
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
     # move focused container between displays
-    # bindsym $mod+shift+bracketleft move container to output left
-    # bindsym $mod+shift+bracketright move container to output right
-    bindsym $mod+shift+minus move container to output up
-    bindsym $mod+shift+equal move container to output down
+    bindsym $mod+shift+bracketleft move container to output up
+    bindsym $mod+shift+bracketright move container to output down
+    #bindsym $mod+shift+minus move container to output up
+    #bindsym $mod+shift+equal move container to output down
     # move focused container between workspaces
     #bindsym $mod+Shift+Left move container to workspace prev_on_output
     #bindsym $mod+Shift+Right move container to workspace next_on_output
-    bindsym $mod+Shift+bracketleft move container to workspace prev_on_output
-    bindsym $mod+Shift+bracketright move container to workspace next_on_output
+    bindsym $mod+Shift+minus move container to workspace prev_on_output
+    bindsym $mod+Shift+equal move container to workspace next_on_output
     # move focused workspace between displays
     # bindsym $mod+shift+minus move workspace to output left
     # bindsym $mod+shift+equal move workspace to output right
-    bindsym $mod+shift+z move workspace to output up
-    bindsym $mod+shift+x move workspace to output down
+    bindsym $mod+shift+w move workspace to output up
+    bindsym $mod+shift+r move workspace to output down
 
 #
 # Workspaces:
