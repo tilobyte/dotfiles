@@ -38,3 +38,6 @@ export PATH="/home/akintilo/.emacs.d/bin:$PATH"
 
 # move to home folder (WSL)
 cd
+
+# check for reminders
+remind $HOME/.config/remind/reminders.rem
