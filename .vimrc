@@ -7,6 +7,7 @@ set hlsearch
 " Press Space to turn off highlighting and clear any message already
 " displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+set showcmd " show command as you type
 
 " attempt to fix starting in replace mode
 set t_u7=

@@ -158,3 +158,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# move to home folder (WSL)
+cd

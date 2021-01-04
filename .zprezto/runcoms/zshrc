@@ -32,3 +32,9 @@ source $HOME/.aliases
 
 # get colors to work properly in tmux
 export TERM=xterm-256color
+
+# add doom emacs to PATH
+export PATH="/home/akintilo/.emacs.d/bin:$PATH"
+
+# move to home folder (WSL)
+cd
