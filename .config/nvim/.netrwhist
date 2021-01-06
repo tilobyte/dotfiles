@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/timothy/.config/nvim/plug-config'
+let g:netrw_dirhist_0='/home/timothy/.config/nvim'
+let g:netrw_dirhist_9='/home/timothy/onedrive-cse/courses/Y3/cse 590 dl/homework/dl-hw0'
+let g:netrw_dirhist_8='/home/timothy/.config/nvim'
+let g:netrw_dirhist_7='/home/timothy/onedrive-cse/courses/Y3/cse 590 dl/homework/dl-hw0'
+let g:netrw_dirhist_6='/home/timothy/.config/nvim'
+let g:netrw_dirhist_5='/home/timothy/.config/nvim/plugged/coc-fzf'
+let g:netrw_dirhist_4='/home/timothy/.config/nvim/plugged'
+let g:netrw_dirhist_3='/home/timothy/.config/nvim'
+let g:netrw_dirhist_2='/home/timothy/.config/ncmpcpp'
