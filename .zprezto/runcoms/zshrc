@@ -36,8 +36,12 @@ export TERM=xterm-256color
 # add doom emacs to PATH
 export PATH="/home/akintilo/.emacs.d/bin:$PATH"
 
+# X server stuff
+# export DISPLAY=:0.0
+# export XDG_RUNTIME_DIR=$HOME/xdg # temporary directory for X to use
+# export RUNLEVEL=3
+# sudo mkdir /var/run/dbus
+# sudo dbus-daemon --config-file=/usr/share/dbus-1/system.conf
+
 # move to home folder (WSL)
 cd
-
-# check for reminders
-remind $HOME/.config/remind/reminders.rem
