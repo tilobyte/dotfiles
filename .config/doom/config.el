@@ -59,6 +59,7 @@
 ;; they are implemented.
 
 ;; editor
+(xterm-mouse-mode 1)
 (setq evil-escape-key-sequence "vk")
 (setq which-key-idle-delay 0.3) ;; training wheels
 (global-set-key (kbd "C-/") 'comment-line)

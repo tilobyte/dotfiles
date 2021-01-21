@@ -1,0 +1,42 @@
+plugins: discogs copyartifacts info embedart
+directory: /mnt/collateral/music/catalog
+library: /mnt/collateral/music/beets-library.db
+
+import:
+    move: yes
+    incremental: no
+    languages: en jp
+copyartifacts:
+    print_ignored: yes
+
+paths:
+    #default: %the{$albumartist}/%the{$album} [$original_year]%aunique{}/$disc-$track $title
+    # the on
+    # default: %the{$albumartist}/%the{$album} [%if{$original_year,$original_year,$year}]%aunique{}/%if{$disc,$disc-}$track $title
+    # the off
+    default: $albumartist/$album [%if{$original_year,$original_year,$year}]%aunique{}/%if{$disc,$disc-}$track $title
+    singleton: Non-Album/$artist/$title%aunique{artist title,original_year length mb_trackid,'[]'}
+    comp: Compilations/$album%aunique{}/$track $title
+aunique:
+    disambiguators: albumdisambig releasegroupdisambig albumtype label catalognum
+per_disc_numbering: yes
+# fetchart:
+#     sources: filesystem coverart itunes fanarttv amazon google 
+#     minwidth: 1000
+#     store_source: yes
+#     fanarttv_key: 58db8a761c63d159aa22575667dd056d
+
+convert:
+    auto: no
+    copy_album_art: yes
+    dest: /mnt/collateral/test
+    embed: no
+    never_convert_lossy_files: yes
+    format: opus
+    formats:
+        opus:
+            command: ffmpeg -i $source -y -vn -acodec libopus -ab 128k $dest
+            extension: opus
+
+embedart:
+    auto: no
