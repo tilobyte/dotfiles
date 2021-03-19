@@ -1,0 +1,11 @@
+### archetype backup
+# local
+@mail(no),nolog(true),serial 1d nice -n 20 /home/restic/bin/backup-archetype-local
+# %nightly,mail(no),nolog(true),serial * 20-23,0-3 /usr/bin/restic --password-file=/home/restic/archetype/local-pass -r /mnt/archetype.bak forget --prune --keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 3
+# remote
+@mail(no),nolog(true),serial 1d nice -n 20 /home/restic/bin/backup-archetype-remote
+# %nightly,mail(no),nolog(true),serial * 20-23,0-3 /usr/bin/restic --password-file=/home/restic/archetype/remote-pass -r rclone:gdrive-cse:archetype.bak forget --prune --keep-daily 7 --keep-weekly 5 --keep-monthly 12 --keep-yearly 3
+
+### music backup
+# remote
+@mail(no),nolog(true),serial 2d nice -n 20 /home/restic/bin/backup-music
