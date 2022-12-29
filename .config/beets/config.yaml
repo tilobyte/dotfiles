@@ -1,4 +1,4 @@
-plugins: discogs copyartifacts info embedart
+plugins: info embedart extrafiles
 directory: /mnt/collateral/music/catalog
 library: /mnt/collateral/music/beets-library.db
 
@@ -8,6 +8,9 @@ import:
     languages: en jp
 copyartifacts:
     print_ignored: yes
+extrafiles:
+    patterns:
+        all: '*'
 
 paths:
     #default: %the{$albumartist}/%the{$album} [$original_year]%aunique{}/$disc-$track $title

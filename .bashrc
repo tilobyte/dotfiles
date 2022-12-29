@@ -132,12 +132,16 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
-# X server stuff
-export DISPLAY=:0.0
-export XDG_RUNTIME_DIR=$HOME/xdg # temporary directory for X to use
-export RUNLEVEL=3
-sudo mkdir /var/run/dbus
-sudo dbus-daemon --config-file=/usr/share/dbus-1/system.conf
+# WSL 2 X server stuff
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+export LIBGL_ALWAYS_INDIRECT=1
+
+# WSL 1 X server stuff
+# export DISPLAY=:0.0
+# export XDG_RUNTIME_DIR=$HOME/xdg # temporary directory for X to use
+# export RUNLEVEL=3
+# sudo mkdir /var/run/dbus
+# sudo dbus-daemon --config-file=/usr/share/dbus-1/system.conf
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

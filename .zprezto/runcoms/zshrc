@@ -37,6 +37,9 @@ export TERM=xterm-256color
 export PATH="/home/akintilo/.emacs.d/bin:$PATH"
 
 # X server stuff
+export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+export LIBGL_ALWAYS_INDIRECT=1
+# xmodmap /home/akintilo/xmodmap/xmodmap.colemak && xset r 66
 # export DISPLAY=:0.0
 # export XDG_RUNTIME_DIR=$HOME/xdg # temporary directory for X to use
 # export RUNLEVEL=3
@@ -45,3 +48,6 @@ export PATH="/home/akintilo/.emacs.d/bin:$PATH"
 
 # move to home folder (WSL)
 cd
+
+# opam configuration
+test -r /home/akintilo/.opam/opam-init/init.zsh && . /home/akintilo/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
