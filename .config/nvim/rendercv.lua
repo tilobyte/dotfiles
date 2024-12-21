@@ -1,0 +1,8 @@
+vim.api.nvim_create_user_command('RenderCv', function()
+  vim.system({ 'rendercv', 'render', 'Timothy_Akintilo_CV.yaml' }, { cwd = '/Users/tibibit/repos/resume-rendercv/' }, function(obj)
+    print(obj.code)
+    print(obj.signal)
+    print(obj.stdout)
+    print(obj.stderr)
+  end)
+end, { nargs = 0 })
