@@ -164,3 +164,4 @@ unset __conda_setup
 
 # move to home folder (WSL)
 cd
+. "$HOME/.cargo/env"
